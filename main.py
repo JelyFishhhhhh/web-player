@@ -12,9 +12,9 @@ CONFIG = Json.load_nowait("config.json")
 @app.get("/")
 async def home():
 
-    URL = {"敦化南路":"https://www.youtube.com/watch?v=f5FN4-HN_JQ"}
-    music = playList()
-    await music.Push(name = "敦化南路", url = "https://www.youtube.com/watch?v=f5FN4-HN_JQ")
+    # URL = {"敦化南路":"https://www.youtube.com/watch?v=f5FN4-HN_JQ"}
+    # music = playList()
+    # await music.Push(name = "敦化南路", url = "https://www.youtube.com/watch?v=f5FN4-HN_JQ")
 
     return "Hello, World."
 
