@@ -7,7 +7,7 @@ from modules import Json, playList
 
 app = FastAPI()
 
-CONFIG = Json.load("config.json")
+CONFIG = Json.load_nowait("config.json")
 
 @app.get("/")
 async def home():
