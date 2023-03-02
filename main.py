@@ -14,7 +14,6 @@ async def home():
 
     URL = {"敦化南路":"https://www.youtube.com/watch?v=f5FN4-HN_JQ"}
     music = playList()
-    # run(music.Push(URL))
     await music.Push(name = "敦化南路", url = "https://www.youtube.com/watch?v=f5FN4-HN_JQ")
 
     return "Hello, World."
