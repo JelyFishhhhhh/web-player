@@ -28,8 +28,8 @@ async def home():
     else:
         return "404 Not-Found"
     
-@app.get("/TONY")
-async def easter_EGG():
+@app.get("/JelyFishhhhhh")
+async def EASTER_EGG():
     return "Hello, Inspector :)"
 
 @app.exception_handler(404)
