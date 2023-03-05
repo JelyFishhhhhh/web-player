@@ -14,10 +14,7 @@ CONFIG = Json.load_nowait("config.json")
 @app.get("/")
 async def home():
 
-    path = join(
-        "templates",
-        "index.html"
-    )
+    path = ".\\templates\\index.html"
     
     if isfile(path):
 
