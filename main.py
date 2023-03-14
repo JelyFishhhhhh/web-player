@@ -1,15 +1,23 @@
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
 from uvicorn import Config, Server
 from aiofiles import open as aopen
 from asyncio import run
 from os.path import isfile, join, split, splitext
 
+from gen_config import *
+
 from modules import Json, playList
 
 app = FastAPI()
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
 CONFIG = Json.load_nowait("config.json")
+
+# config檔製作
+if not isfile("config.json"):
+    run(gen_CONFIG())
 
 @app.get("/")
 async def home():
@@ -37,7 +45,7 @@ async def NOTFOUND(requests, exc):
 @app.exception_handler(500)
 async def INTERNAL_ERR0R(requests, exc):
     
-    return "500 Internal-Server-Err0r"
+    return "waiting for developers found this bug :("
 
 if __name__ == "__main__":
     
