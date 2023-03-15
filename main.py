@@ -53,6 +53,6 @@ if __name__ == "__main__":
     server = Server(config = config)
     server.run()
 
-    # URL = {"敦化南路":"https://www.youtube.com/watch?v=f5FN4-HN_JQ"}
-    # music = playList()
-    # await music.Push(name = "敦化南路", url = "https://www.youtube.com/watch?v=f5FN4-HN_JQ")
+# URL = {"敦化南路":"https://www.youtube.com/watch?v=f5FN4-HN_JQ"}
+# music = playList()
+# await music.Push(name = "敦化南路", url = "https://www.youtube.com/watch?v=f5FN4-HN_JQ")
