@@ -2,25 +2,68 @@
 
 /* Permanent Marker */
 
-@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+@font-face {
+    font-family:"Permanent_Marker";
+    src: url("Permanent_Marker/PermanentMarker-Regular.ttf") format("woff2");
+}
 
 /* Ubuntu */
 
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+@font-face {
+    font-family:"Ubuntu-Regular";
+    src: url("Ubuntu/Ubuntu-Regular.ttf") format("woff2");
+}
+
+@font-face {
+    font-family:"Ubuntu-Bold";
+    src: url("Ubuntu/Ubuntu-Bold.ttf") format("woff2");
+}
+
+@font-face {
+    font-family:"Ubuntu-Medium";
+    src: url("Ubuntu/Ubuntu-Medium.ttf") format("woff2");
+}
 
 /* Caveat */
 
-@import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');
+@font-face {
+    font-family:"Caveat";
+    src: url("Caveat/Caveat-VariableFont_wght.ttf") format("woff2");
+}
 
 /* Runia */
 
-@import url('https://fonts.googleapis.com/css2?family=Rufina&display=swap');
+@font-face {
+    font-family:"Runia-Regular";
+    src: url("Rufina/Rufina-Regular.ttf") format("woff2");
+}
+@font-face {
+    font-family:"Runia-Bold";
+    src: url("Rufina/Rufina-Bold.ttf") format("woff2");
+}
 
 /* ===== Chinese ===== */
 
-/* NOTO Sans Trad Chinese */
+/* Noto Sans Trad Chinese */
 
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap');
+@font-face {
+    font-family:"Noto-Sans-Regular";
+    src: url("Noto_Sans_TC/NotoSansTC-Regular.otf") format("woff2");
+}
+
+@font-face {
+    font-family:"Noto-Sans-Bold";
+    src: url("Noto_Sans_TC/NotoSansTC-Bold.otf") format("woff2");
+}
+
+@font-face {
+    font-family:"Noto-Sans-Light";
+    src: url("Noto_Sans_TC/NotoSansTC-Light.otf") format("woff2");
+}
 
 /* NOTO Serif Trad Chinese*/
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC&display=swap');
+
+@font-face {
+    font-family:"Noto-Serif-Bold";
+    src: url("Noto_Serif_TC/NotoSerifTC-Regular.otf") format("woff2");
+}

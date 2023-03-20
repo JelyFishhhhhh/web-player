@@ -1,5 +1,5 @@
-from fastapi import FastAPI
-from fastapi.responses import HTMLResponse
+from fastapi import FastAPI, Form
+from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from uvicorn import Config, Server
 from aiofiles import open as aopen
@@ -7,11 +7,12 @@ from asyncio import run
 from os.path import isfile, join, split, splitext
 
 from gen_config import *
-
 from modules import Json, playList
 
 app = FastAPI()
+
 app.mount("/static", StaticFiles(directory="static"), name="static")
+app.mount(path="/check/static", app=StaticFiles(directory="static"), name="include-static")
 
 CONFIG = Json.load_nowait("config.json")
 
@@ -22,7 +23,7 @@ if not isfile("config.json"):
 @app.get("/")
 async def home():
 
-    path = ".\\templates\\index.html"
+    path = "\\templates\\index.html"
     
     if isfile(path):
 
@@ -32,7 +33,35 @@ async def home():
     
     else:
         return "404 Not-Found"
+
+@app.get("/login")
+async def G_login():
+
+    async with aopen ("templates/login.html", "rb") as html_file:
     
+        return HTMLResponse(await html_file.read(), status_code=200)
+    
+@app.post("/login")
+async def P_login(username:str  = Form(...), password:str = Form(...)):
+
+    print(f"Received login request with username={username} and password={password}")
+    return RedirectResponse(url="/JelyFishhhhhh", status_code=303)
+
+@app.get("/check/{page}")
+async def templates(page):
+    
+    files = f"templates\\{page}.html"
+
+    if isfile(files):
+
+        async with aopen(files, mode="rb") as html_file:
+
+            return HTMLResponse(await html_file.read())
+    
+    else:
+        return "404 Not-Found"
+
+
 @app.get("/JelyFishhhhhh")
 async def EASTER_EGG():
     return "Hello, Inspector :)"
