@@ -1,6 +1,6 @@
 from modules import Json
 
-async def gen_CONFIG():
+def gen_CONFIG():
     CONFIG: dict[str, dict] = {
         "HOST" : "",
         "PORT" : "",

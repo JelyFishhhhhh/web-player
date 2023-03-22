@@ -11,8 +11,7 @@ from modules import Json, playList
 
 app = FastAPI()
 
-app.mount("/static", StaticFiles(directory="static"), name="static")
-app.mount(path="/check/static", app=StaticFiles(directory="static"), name="include-static")
+app.mount(path="/static", app=StaticFiles(directory="static"), name="static")
 
 CONFIG = Json.load_nowait("config.json")
 
@@ -37,9 +36,9 @@ async def home():
 @app.get("/login")
 async def G_login():
 
-    async with aopen ("templates/login.html", "rb") as html_file:
+    async with aopen ("templates\\login.html", "rb") as html_file:
     
-        return HTMLResponse(await html_file.read(), status_code=200)
+        return HTMLResponse(await html_file.read())
     
 @app.post("/login")
 async def P_login(username:str  = Form(...), password:str = Form(...)):
