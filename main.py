@@ -22,7 +22,7 @@ if not isfile("config.json"):
 @app.get("/")
 async def home():
 
-    path = "\\templates\\index.html"
+    path = "templates/index.html"
     
     if isfile(path):
 
@@ -34,22 +34,23 @@ async def home():
         return "404 Not-Found"
 
 @app.get("/login")
-async def G_login():
+async def login():
 
-    async with aopen ("templates\\login.html", "rb") as html_file:
+    async with aopen ("templates/login.html", "rb") as html_file:
     
         return HTMLResponse(await html_file.read())
     
 @app.post("/login")
-async def P_login(username:str  = Form(...), password:str = Form(...)):
+async def login(username:str  = Form(...), password:str = Form(...)):
 
-    print(f"Received login request with username={username} and password={password}")
-    return RedirectResponse(url="/JelyFishhhhhh", status_code=303)
+    # print(f"Received login request with username={username} and password={password}")
+    return RedirectResponse(url="/", status_code=303)
+    # return "Successful."
 
 @app.get("/check/{page}")
 async def templates(page):
     
-    files = f"templates\\{page}.html"
+    files = f"templates/{page}.html"
 
     if isfile(files):
 
