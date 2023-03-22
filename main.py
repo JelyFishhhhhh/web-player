@@ -19,34 +19,21 @@ CONFIG = Json.load_nowait("config.json")
 if not isfile("config.json"):
     run(gen_CONFIG())
 
-@app.get("/")
-async def home():
-
-    path = "templates/index.html"
-    
-    if isfile(path):
-
-        async with aopen(path, mode="rb") as html_file:
-
-            return HTMLResponse(await html_file.read())
-    
-    else:
-        return "404 Not-Found"
-
 @app.get("/login")
 async def login():
 
     async with aopen ("templates/login.html", "rb") as html_file:
     
         return HTMLResponse(await html_file.read())
+
+
+@app.get("/")
+async def home():
+
+    async with aopen ("templates/index.html", mode="rb") as html_file:
+
+        return HTMLResponse(await html_file.read())
     
-@app.post("/login")
-async def login(username:str  = Form(...), password:str = Form(...)):
-
-    # print(f"Received login request with username={username} and password={password}")
-    return RedirectResponse(url="/", status_code=303)
-    # return "Successful."
-
 @app.get("/check/{page}")
 async def templates(page):
     
@@ -61,6 +48,12 @@ async def templates(page):
     else:
         return "404 Not-Found"
 
+@app.post("/login")
+async def login(username:str  = Form(...), password:str = Form(...)):
+
+    # print(f"Received login request with username={username} and password={password}")
+    return RedirectResponse(url="/", status_code=303)
+    # return "Successful."
 
 @app.get("/JelyFishhhhhh")
 async def EASTER_EGG():

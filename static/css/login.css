@@ -1,3 +1,8 @@
 .container{
-  background-color: #0abab5;
+  background-color: #520317;
+}
+
+label{
+  font-family:sans-serif;
+  font-size: 35px;
 }
