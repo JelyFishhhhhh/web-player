@@ -1,14 +1,29 @@
-.container{
-  background-color: #520317;
-}
-
-label{
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  font-size: 35px;
-
+html{
+  background-color: #151A28;
 }
 
 h1{
   font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  font-size: 350px;
+  font-size: 35px;
+  color: #7F007F;
+  text-shadow: #764D9C 0.215px 0.317px 0.419px;
+}
+
+label{
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 21.5px;
+  color: #7FFE00;
+}
+
+.info{
+  /*background-color: #c3c4cb;*/
+  background-color: transparent;
+  height: 35px;
+  width: 500px;
+  font-size: 35px;
+  color: #c3c4cb;
+  text-align: center;
+  border-radius: 35px;
+  border: #c3c4cb 2px;
+  border-color: #764D9C;
 }
