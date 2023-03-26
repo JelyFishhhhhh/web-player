@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="static/css/register.css">
+        <!-- <script src="static/js/login.js"></script> -->
+        <link rel="icon" href="static/img/favicon.png">
+    </head>
+    <body>
+        <h1>Hello, Welcome to the Register page !</h1>
+        <form method="post", action="/register">
+            <div class="form">
+                <input type="text" name="username" autocomplete="off"  placeholder="Name" required />
+                <label for="text" class="label-name">
+                <span class="content-name">
+                    Username
+                </span>
+                </label>
+            </div>
+            
+            <br>
+            
+            <div class="form">
+                <input type="email" name="email" autocomplete="off" placeholder="example@gmail.com" required />
+                <label for="text" class="label-name">
+                <span class="content-name">
+                    Email
+                </span>
+                </label>
+            </div>
+
+            <br>
+
+            <div class="form">
+                <input type="password" name="password" autocomplete="off" placeholder="●●●●●●●●" required />
+                <label for="text" class="label-name">
+                <span class="content-name">
+                    Password
+                </span>
+                </label>
+            </div>
+
+            <br>
+
+            <div class="form">
+                <input type="password" name="confirm_password" autocomplete="off" placeholder="●●●●●●●●" required />
+                <label for="text" class="label-name">
+                <span class="content-name">
+                    Confirm Password
+                </span>
+                </label>
+            </div>
+
+            <br>
+
+            <input type="submit" value="Login">
+        </form>
+    </body>
+</html>

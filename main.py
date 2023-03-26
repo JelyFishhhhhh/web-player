@@ -12,15 +12,26 @@ from modules import Json, playList
 privacy_file = ["config.json", "user.db"]
 
 for f in privacy_file:
+    
     if not isfile(f):
+        
         _ = open(f, "w+")
+        
         if f == "config.json":
+        
             gen_CONFIG()
 
 app = FastAPI()
 app.mount(path="/static", app=StaticFiles(directory="static"), name="static")
 CONFIG = Json.load_nowait("config.json")
 connection = sql.connect("user.db")
+
+
+@app.get("/")
+async def home():
+    async with aopen ("templates/index.html", mode="rb") as html_file:
+
+        return HTMLResponse(await html_file.read())
 
 @app.get("/login")
 async def login():
@@ -29,13 +40,13 @@ async def login():
     
         return HTMLResponse(await html_file.read())
 
+@app.get("/register")
+async def register():
 
-@app.get("/")
-async def home():
-    async with aopen ("templates/index.html", mode="rb") as html_file:
+    async with aopen ("templates/register.html", "rb") as html_file:
 
         return HTMLResponse(await html_file.read())
-    
+
 @app.get("/check/{page}")
 async def templates(page):
     
@@ -56,6 +67,14 @@ async def login(username:str  = Form(...), password:str = Form(...)):
     # print(f"Received login request with username={username} and password={password}")
     return RedirectResponse(url="/", status_code=303)
     # return "Successful."
+
+@app.post("/register")
+async def register(
+    username:str = Form(...), 
+    email:str = Form(...), 
+    password: str = Form(...),
+    confirm_password: str = Form(...)):
+    return RedirectResponse(url="/", status_code=303)
 
 @app.get("/JelyFishhhhhh")
 async def EASTER_EGG():
