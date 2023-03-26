@@ -3,7 +3,6 @@ from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from uvicorn import Config, Server
 from aiofiles import open as aopen
-from asyncio import run
 from os.path import isfile
 import sqlite3 as sql
 
@@ -16,7 +15,7 @@ for f in privacy_file:
     if not isfile(f):
         _ = open(f, "w+")
         if f == "config.json":
-            run(gen_CONFIG())
+            gen_CONFIG()
 
 app = FastAPI()
 app.mount(path="/static", app=StaticFiles(directory="static"), name="static")
