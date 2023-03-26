@@ -7,6 +7,6 @@ def gen_CONFIG():
     }
 
     CONFIG["HOST"] = input("Your server HOST:\n> ")
-    CONFIG["PORT"] = input("Your server PORT:\n> ")
+    CONFIG["PORT"] = int(input("Your server PORT:\n> "))
 
     Json.dump_nowait("config.json", CONFIG)

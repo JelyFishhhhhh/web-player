@@ -10,11 +10,6 @@ import sqlite3 as sql
 from gen_config import *
 from modules import Json, playList
 
-app = FastAPI()
-app.mount(path="/static", app=StaticFiles(directory="static"), name="static")
-CONFIG = Json.load_nowait("config.json")
-connection = sql.connect("user.db")
-
 # config檔製作
 if not isfile("config.json"):
     f = open("config.json", "w+")
@@ -22,6 +17,11 @@ if not isfile("config.json"):
 
 if not isfile("user.db"):
     f = open("user.db", "w+")
+
+app = FastAPI()
+app.mount(path="/static", app=StaticFiles(directory="static"), name="static")
+CONFIG = Json.load_nowait("config.json")
+connection = sql.connect("user.db")
 
 @app.get("/login")
 async def login():
