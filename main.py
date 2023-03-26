@@ -17,7 +17,11 @@ connection = sql.connect("user.db")
 
 # config檔製作
 if not isfile("config.json"):
+    f = open("config.json", "w+")
     run(gen_CONFIG())
+
+if not isfile("user.db"):
+    f = open("user.db", "w+")
 
 @app.get("/login")
 async def login():
