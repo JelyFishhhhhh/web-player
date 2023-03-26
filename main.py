@@ -10,13 +10,13 @@ import sqlite3 as sql
 from gen_config import *
 from modules import Json, playList
 
-# config檔製作
-if not isfile("config.json"):
-    f = open("config.json", "w+")
-    run(gen_CONFIG())
+privacy_file = ["config.json", "user.db"]
 
-if not isfile("user.db"):
-    f = open("user.db", "w+")
+for f in privacy_file:
+    if not isfile(f):
+        _ = open(f, "w+")
+        if f == "config.json":
+            run(gen_CONFIG())
 
 app = FastAPI()
 app.mount(path="/static", app=StaticFiles(directory="static"), name="static")
