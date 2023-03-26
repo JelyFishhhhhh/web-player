@@ -4,16 +4,16 @@ from fastapi.staticfiles import StaticFiles
 from uvicorn import Config, Server
 from aiofiles import open as aopen
 from asyncio import run
-from os.path import isfile, join, split, splitext
+from os.path import isfile
+import sqlite3 as sql
 
 from gen_config import *
 from modules import Json, playList
 
 app = FastAPI()
-
 app.mount(path="/static", app=StaticFiles(directory="static"), name="static")
-
 CONFIG = Json.load_nowait("config.json")
+connection = sql.connect("user.db")
 
 # config檔製作
 if not isfile("config.json"):
@@ -29,7 +29,6 @@ async def login():
 
 @app.get("/")
 async def home():
-
     async with aopen ("templates/index.html", mode="rb") as html_file:
 
         return HTMLResponse(await html_file.read())
