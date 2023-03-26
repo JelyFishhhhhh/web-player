@@ -26,7 +26,6 @@ br{
   overflow: hidden;
 }
 
-
 .form input {
   width: 100%;
   height: 100%;
@@ -78,6 +77,7 @@ br{
   left: 0px;
   color: #0abab5;
 }
+
 .form input:focus + .label-name::after,
 .form input:valid + .label-name::after {
   transform: translateX(0%);
