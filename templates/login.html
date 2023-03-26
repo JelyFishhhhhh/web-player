@@ -6,20 +6,31 @@
         <link rel="icon" href="static/img/favicon.png">
     </head>
     <body>
-        <div class="container">
-            <h1>Hello, Welcome to the Login page !</h1>
+        <h1>Hello, Welcome to the Login page !</h1>
+        <form method="post", action="/login">
+            <div class="form">
+                <input type="text" name="username" autocomplete="off" required />
+                <label for="text" class="label-name">
+                <span class="content-name">
+                    Username
+                </span>
+                </label>
+            </div>
+            
             <br>
-            <form method="post", action="/login">
-                <label for="username">Username</label>
-                <br><br>
-                <input type="text" id="username" name="username" class="info">
-                <br><br>
-                <label for="password">Password</label>
-                <br><br>
-                <input type="password" id="password" name="password" class="info">
-                <br><br>
-                <input type="submit" value="submit" class="submit">
-            </form>
-        </div>
+            
+            <div class="form">
+                <input type="password" name="password" autocomplete="off" required />
+                <label for="text" class="label-name">
+                <span class="content-name">
+                    Password
+                </span>
+                </label>
+            </div>
+
+            <br>
+
+            <input type="submit" value="Login">
+        </form>
     </body>
 </html>
