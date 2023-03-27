@@ -5,6 +5,8 @@ from uvicorn import Config, Server
 from aiofiles import open as aopen
 from os.path import isfile
 import sqlite3 as sql
+from typing import Optional
+from sqlmodel import Field, SQLModel
 
 from gen_config import *
 from modules import Json, playList
@@ -25,6 +27,7 @@ app = FastAPI()
 app.mount(path="/static", app=StaticFiles(directory="static"), name="static")
 CONFIG = Json.load_nowait("config.json")
 connection = sql.connect("user.db")
+
 
 
 @app.get("/")
