@@ -67,7 +67,7 @@ async def templates(page):
 @app.post("/login")
 async def login(username:str  = Form(...), password:str = Form(...)):
 
-    # print(f"Received login request with username={username} and password={password}")
+    print(f">>>Login as \n->{username}")
     return RedirectResponse(url="/", status_code=303)
     # return "Successful."
 
@@ -79,7 +79,7 @@ async def register(
     confirm_password: str = Form(...)):
 
     await method.sql_insert(name=username, email=email, password=password)
-    return RedirectResponse(url="/", status_code=303)
+    return RedirectResponse(url="/login", status_code=303)
 
 @app.get("/JelyFishhhhhh")
 async def EASTER_EGG():
