@@ -7,36 +7,44 @@ body {
     flex-direction: column;
     background-color: #151A28;
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  }
-  
-  h1{
+}
+
+h1{
     font-size: 35px;
     color: #7F007F;
     text-shadow: #764D9C 0.215px 0.317px 0.419px;
-  }
-  
-  br{
+}
+
+br{
     height: 35px;
-  }
-  
-  .form {
+}
+
+.form {
     width: 350px;
     position: relative;
     height: 60px;
     overflow: hidden;
-  }
-  
-  
-  .form input {
+}
+
+
+.form input {
     width: 100%;
     height: 100%;
     color: #4cfe00;
     padding-top: 20px;
     border: none;
     background-color: #151A28;
-  }
-  
-  .form label {
+}
+
+.form input::placeholder{
+    color: transparent;
+}
+
+.form input:focus::placeholder{
+    color: #c3c4cb;
+}
+
+.form label {
     position: absolute;
     bottom: 0px;
     left: 0px;
@@ -44,9 +52,9 @@ body {
     height: 100%;
     pointer-events: none;
     border-bottom: 1px solid #7FFE00;
-  }
-  
-  .form label::after {
+}
+
+.form label::after {
     content: "";
     position: absolute;
     bottom: -1px;
@@ -56,30 +64,29 @@ body {
     border-bottom: 3px solid #0abab5;
     transform: translateX(-100%);
     transition: all 0.3s ease;
-  }
-  
-  .content-name {
+}
+
+.content-name {
     position: absolute;
     bottom: 0px;
     left: 0px;
     padding-bottom: 5px;
     transition: all 0.3s ease;
     color: #7FFE00;
-  }
-  
-  .form input:focus {
+}
+
+.form input:focus {
     outline: none;
-  }
-  
-  .form input:focus + .label-name .content-name,
-  .form input:valid + .label-name .content-name {
+}
+
+.form input:focus + .label-name .content-name,
+.form input:valid + .label-name .content-name {
     transform: translateY(-150%);
     font-size: 14px;
     left: 0px;
     color: #0abab5;
-  }
-  .form input:focus + .label-name::after,
-  .form input:valid + .label-name::after {
+}
+.form input:focus + .label-name::after,
+.form input:valid + .label-name::after {
     transform: translateX(0%);
-  }
-  
+}
