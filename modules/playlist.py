@@ -10,7 +10,6 @@ from orjson import dumps
 # print("Hello")
 class playList:
     
-    @staticmethod
     async def Push(
         name : str, 
         url: str

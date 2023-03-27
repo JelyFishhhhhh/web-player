@@ -3,13 +3,16 @@ from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from uvicorn import Config, Server
 from aiofiles import open as aopen
+from asyncio import run
 from os.path import isfile
 import sqlite3 as sql
 from typing import Optional
-from sqlmodel import Field, SQLModel
+from sqlmodel import SQLModel
+from sqlmodel.ext.asyncio.session import AsyncSession
 
 from gen_config import *
 from modules import Json, playList
+from modules.user import ENGINE, method
 
 privacy_file = ["config.json", "user.db"]
 
@@ -26,9 +29,6 @@ for f in privacy_file:
 app = FastAPI()
 app.mount(path="/static", app=StaticFiles(directory="static"), name="static")
 CONFIG = Json.load_nowait("config.json")
-connection = sql.connect("user.db")
-
-
 
 @app.get("/")
 async def home():
@@ -94,6 +94,8 @@ async def INTERNAL_ERR0R(requests, exc):
     return "waiting for developers found this bug :("
 
 if __name__ == "__main__":
+
+    run(method.sql_init())
     
     config = Config(app, host = CONFIG["HOST"], port = CONFIG["PORT"])
     server = Server(config = config)
