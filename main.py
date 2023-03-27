@@ -17,6 +17,7 @@ for f in privacy_file:
         
         _ = open(f, "w+")
         
+        
         if f == "config.json":
         
             gen_CONFIG()
