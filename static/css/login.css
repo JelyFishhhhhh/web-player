@@ -35,6 +35,14 @@ br{
   background-color: #151A28;
 }
 
+.form input::placeholder{
+  color: transparent;
+}
+
+.form input:focus::placeholder{
+  color: #c3c4cb;
+}
+
 .form label {
   position: absolute;
   bottom: 0px;
