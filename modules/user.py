@@ -5,10 +5,6 @@ from typing import Optional
 
 ENGINE = create_async_engine("sqlite+aiosqlite:///user.db")
 
-class ID(SQLModel):
-    id: Optional[int] = Field(
-        None, primary_key=True, unique=True, description="ID")
-
 class User_Profile(SQLModel, table = True):
     __tablename__ = "UserData"
 
@@ -21,37 +17,52 @@ class User_Profile(SQLModel, table = True):
 
 class method():
 
-    async def sql_init():
+    async def sql_init(debug:bool = False):
 
         async with ENGINE.begin() as connection:
-
-            await connection.run_sync(SQLModel.metadata.drop_all)
+            if debug:
+                await connection.run_sync(SQLModel.metadata.drop_all)
             await connection.run_sync(SQLModel.metadata.create_all)
 
-        from modules import User_Profile as User
+        if debug:
+
+            async with AsyncSession(ENGINE) as session:
+                
+                session.add(
+                        User_Profile(**{
+                            "uid": "000",
+                            "name": "admin",
+                            "email": "admin@gmail.com",
+                            "password": "admin",
+                            "role": "ADMIN",
+                        })
+                    )
+
+
+                session.add(
+                        User_Profile(**{
+                            "uid": "001",
+                            "name": "alice",
+                            "email": "alice@gmail.com",
+                            "password": "alice",
+                            "role": "NORMAL",
+                        })
+                    )
+                
+                await session.commit()
+    
+    async def sql_insert(name:str = "Username", email:str = "example@gmail.com", password:str = "0X0X0X0X", role: str = "NORMAL"):
 
         async with AsyncSession(ENGINE) as session:
             
             session.add(
-                    User(**{
-                        "uid": "000",
-                        "name": "admin",
-                        "email": "admin@gmail.com",
-                        "password": "admin",
-                        "role": "ADMIN",
-                    })
-                )
-
-
-            session.add(
-                    User(**{
-                        "uid": "001",
-                        "name": "alice",
-                        "email": "alice@gmail.com",
-                        "password": "alice",
-                        "role": "NORMAL",
+                    User_Profile(**{
+                        "uid": "215",
+                        "name": name,
+                        "email": email,
+                        "password": password,
+                        "role": role,
                     })
                 )
             
             await session.commit()
-

@@ -77,6 +77,8 @@ async def register(
     email:str = Form(...), 
     password: str = Form(...),
     confirm_password: str = Form(...)):
+
+    await method.sql_insert(name=username, email=email, password=password)
     return RedirectResponse(url="/", status_code=303)
 
 @app.get("/JelyFishhhhhh")
@@ -95,7 +97,7 @@ async def INTERNAL_ERR0R(requests, exc):
 
 if __name__ == "__main__":
 
-    run(method.sql_init())
+    run(method.sql_init(debug=True))
     
     config = Config(app, host = CONFIG["HOST"], port = CONFIG["PORT"])
     server = Server(config = config)
