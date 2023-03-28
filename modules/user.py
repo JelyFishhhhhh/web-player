@@ -54,7 +54,7 @@ class method():
     async def sql_insert(name:str = "Username", email:str = "example@gmail.com", password:str = "0X0X0X0X", role: str = "NORMAL"):
 
         async with AsyncSession(ENGINE) as session:
-            
+
             session.add(
                     User_Profile(**{
                         "uid": "215",
@@ -66,3 +66,9 @@ class method():
                 )
             
             await session.commit()
+
+    # async def sql_select(name:str, password:str):
+
+    #     async with AsyncSession(ENGINE) as session:
+
+    #         statemnt = select()
