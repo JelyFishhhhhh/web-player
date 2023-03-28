@@ -1,4 +1,4 @@
-python -m  pipreqs.pipreqs --encoding utf-8  /path/to/project
+python -m  pipreqs.pipreqs --force --encoding utf-8 .
 git add .
 git commit -m "Commit"
 git push
