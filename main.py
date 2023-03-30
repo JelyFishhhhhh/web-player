@@ -6,19 +6,11 @@ from uvicorn import Config, Server
 from aiofiles import open as aopen
 from asyncio import run, new_event_loop, all_tasks
 from os.path import isfile
-import sqlite3 as sql
-from typing import Optional
-from sqlmodel import SQLModel
 from sqlmodel.ext.asyncio.session import AsyncSession
 
 from gen_config import *
 from modules import Json, playList
 from modules.user import ENGINE, method
-
-privacy_file = ["config.json", "user.db"]
-
-app.mount(path="/static", app=StaticFiles(directory="static"), name="static")
-CONFIG = Json.load_nowait("config.json")
 
 @app.get("/check/{page}")
 async def templates(page):
@@ -40,26 +32,28 @@ async def EASTER_EGG():
 
 if __name__ == "__main__":
     
-    for f in privacy_file:
-        
-        if not isfile(f):
-            
-            _ = open(f, "w+")
-            
-            if f == "config.json":
-            
-                gen_CONFIG()
+    with open (".private", "r+") as privacy_file:
+        for f in privacy_file:
+            f = f[:-2]
+            if not isfile(f):
+                
+                _ = open(f, "w+")
+                
+                if f == "config.json":
+                
+                    gen_CONFIG()
 
     run(method.sql_init(debug=True))
-
+    
+    app.mount(path="/static", app=StaticFiles(directory="static"), name="static")
+    CONFIG = Json.load_nowait("config.json")
+    
     config = Config(app, host = CONFIG["HOST"], port = CONFIG["PORT"])
     server = Server(config = config)
     
-    run(server.run())
-
-    # loop = new_event_loop()
-    # app_tasks = loop.create_task(server.serve())
-    # loop.run_until_complete(app_tasks)
+    loop = new_event_loop()
+    app_tasks = loop.create_task(server.serve())
+    loop.run_until_complete(app_tasks)
 
     # for task in all_tasks(loop=loop):
     #     task.cancel()
