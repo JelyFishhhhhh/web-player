@@ -1,12 +1,10 @@
 from router import app
-from fastapi import FastAPI, Form, APIRouter
-from fastapi.responses import HTMLResponse, RedirectResponse
+from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from uvicorn import Config, Server
 from aiofiles import open as aopen
-from asyncio import run, new_event_loop, all_tasks
+from asyncio import run, new_event_loop
 from os.path import isfile
-from sqlmodel.ext.asyncio.session import AsyncSession
 
 from gen_config import *
 from modules import Json, playList
