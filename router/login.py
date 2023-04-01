@@ -26,4 +26,3 @@ async def login(username:str  = Form(...), password:str = Form(...)):
     else:
         print(f">>>Login as \n->{username}")
         return RedirectResponse(url="/", status_code=303)
-    # return "Successful."
