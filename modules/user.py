@@ -1,4 +1,5 @@
-from sqlmodel import SQLModel, Field
+from sqlmodel import SQLModel, Field, select
+from sqlmodel.main import SQLModelMetaclass
 from sqlmodel.ext.asyncio.session import AsyncSession
 from sqlalchemy.ext.asyncio import create_async_engine
 from typing import Optional
@@ -67,8 +68,32 @@ class method():
             
             await session.commit()
 
-    # async def sql_select(name:str, password:str):
+    async def sql_where_by_ID(t_name: SQLModelMetaclass, uid: str):
 
-    #     async with AsyncSession(ENGINE) as session:
+        async with AsyncSession(ENGINE) as session:
 
-    #         statemnt = select()
+            statemnt = select(t_name).where(t_name.uid == uid)
+
+            results = await session.exec(statement=statemnt)
+
+            return results.first()
+        
+    async def sql_where_by_NAME(t_name: SQLModelMetaclass, name: str):
+
+        async with AsyncSession(ENGINE) as session:
+
+            statement = select(t_name).where(t_name.name == name)
+            
+            results = await session.exec(statement=statement)
+
+            return results.first()
+        
+    async def sql_where_by_MAIL(t_name: SQLModelMetaclass, mail: str):
+
+        async with AsyncSession(ENGINE) as session:
+
+            statement = select(t_name).where(t_name.email == mail)
+            
+            results = await session.exec(statement=statement)
+
+            return results.first()

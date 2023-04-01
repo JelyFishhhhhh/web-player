@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Form
 from fastapi.responses import HTMLResponse, RedirectResponse
 from aiofiles import open as aopen
-from modules import method
+from modules import method, genVCODE
 
 router = APIRouter(tags=["user"])
 

@@ -41,22 +41,21 @@ if __name__ == "__main__":
                 
                     gen_CONFIG()
 
-    run(method.sql_init(debug=True))
+    
+    CONFIG = Json.load_nowait("config.json")
+    run(method.sql_init(debug=CONFIG["DEBUG"]))
     
     app.mount(path="/static", app=StaticFiles(directory="static"), name="static")
-    CONFIG = Json.load_nowait("config.json")
-    
     config = Config(app, host = CONFIG["HOST"], port = CONFIG["PORT"])
     server = Server(config = config)
     
     loop = new_event_loop()
     app_tasks = loop.create_task(server.serve())
     loop.run_until_complete(app_tasks)
+    loop.stop()
 
     # for task in all_tasks(loop=loop):
     #     task.cancel()
-
-    # loop.stop()
 
 # URL = {"敦化南路":"https://www.youtube.com/watch?v=f5FN4-HN_JQ"}
 # music = playList()

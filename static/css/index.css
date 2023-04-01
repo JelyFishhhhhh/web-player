@@ -1,0 +1,25 @@
+body {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    background-color: #151A28;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+h1{
+    align-self: center;
+    font-size: 35px;
+    color: #7F007F;
+    text-shadow: #764D9C 0.215px 0.317px 0.419px;
+}
+
+br{
+    height: 35px;
+}
+
+a{
+    font-size: 35px;
+    color: #4cfe00;
+    padding-left: 35px;
+}
