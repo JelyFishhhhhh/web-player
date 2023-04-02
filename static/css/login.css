@@ -19,6 +19,10 @@ br{
   height: 35px;
 }
 
+/* .error-message{
+  color: transparent;
+} */
+
 .form {
   width: 350px;
   position: relative;

@@ -7,9 +7,11 @@ router = APIRouter(tags=["user"])
 
 @router.get("/login")
 async def login():
-
-    async with aopen ("templates/login.html", "rb") as html_file:
     
+    code, img = await genVCODE()
+    
+    async with aopen ("templates/login.html", "rb") as html_file:
+        
         return HTMLResponse(await html_file.read())
     
 @router.post("/login")

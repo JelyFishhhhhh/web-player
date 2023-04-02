@@ -43,6 +43,6 @@ async def genVCODE():
     # ax.text(0.1, 0.9,text, ha='center', va='center', transform=ax.transAxes)
     plt.axis("off")
     plt.imshow(image)
-    plt.savefig(f"{dt}.png")
+    plt.savefig(f"static/img/vcode.png")
 
     return text, image
