@@ -1,2 +1,2 @@
-# music-queue
+# web-player
 :for-fun:
