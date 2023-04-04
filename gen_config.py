@@ -2,12 +2,12 @@ from modules import Json
 
 def gen_CONFIG():
     CONFIG: dict[str, dict] = {
-        "HOST" : "",
-        "PORT" : "",
-        "DEBUG" : "",
+        "HOST" : "0.0.0.0",
+        "PORT" : 8000,
+        "DEBUG" : True,
     }
 
-    CONFIG["HOST"] = input("Your server HOST:\n> ")
+    CONFIG["HOST"] = str(input("Your server HOST:\n> "))
     CONFIG["PORT"] = int(input("Your server PORT:\n> "))
     CONFIG["DEBUG"] = bool(input("Debug mode:\n> "))
 
