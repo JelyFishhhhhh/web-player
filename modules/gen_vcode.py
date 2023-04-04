@@ -91,14 +91,14 @@ async def genVCODE():
 class valid_code:
     
     def __init__(self) -> None:
+        
         self.data = {}
-        pass
 
-    async def update(self, session: str, answer: str):
+    def update(self, session: str, answer: str):
 
         self.data[session] = (answer, datetime.now().strftime("%Y%m%d %H-%M-%S"))
 
-    async def auth(self, session: str, request: str):
+    def auth(self, session: str, request: str):
 
         if session is None:
             return False

@@ -8,19 +8,6 @@ from hashlib import sha256
 from uuid import uuid1
 from string import ascii_letters
 
-URL_MAP = (ascii_letters + "0123456789").encode()
-
-def text_encode(text: Union[str, bytes], raw: bool = False) -> str:
-
-    text = text.encode() if type(text) == str else text
-    result = b64encode(sha256(text).digest())
-    return result if raw else result.decode()
-
-def gen_session_id() -> str:
-
-    result = text_encode(uuid1().bytes, raw=True)
-    return bytes(map(lambda x: URL_MAP[x % 62], result)).decode()
-
 ENGINE = create_async_engine("sqlite+aiosqlite:///user.db")
 
 class User_Profile(SQLModel, table = True):

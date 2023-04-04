@@ -2,37 +2,39 @@ from typing import Optional
 from fastapi import APIRouter, Form, Cookie
 from fastapi.responses import HTMLResponse, RedirectResponse, Response
 from aiofiles import open as aopen
-from modules import genVCODE, method, User_Profile, valid_code, gen_session_id
+from modules import genVCODE, method, User_Profile, valid_code
 
 router = APIRouter(tags=["user"])
 
 @router.get("/login")
 async def login(session: Optional[str] = Cookie(None)):
     
-    # global answer
+    global answer
 
     answer, code = await genVCODE()
     
 
-    response = Response(content=code, headers={
-                        "Cache-Control": "no-store"}, media_type="image/jpeg")
-    if session is None:
-        session = gen_session_id()
-        response.set_cookie("session", session)
+    # response = Response(content=code, headers={
+    #                     "Cache-Control": "no-store"}, media_type="image/png")
+    # if session is None:
+    #     session = gen_session_id()
+    #     response.set_cookie("session", session)
     
-    valid_code.update(session, answer)
-    return response
+    # valid_code.update(session, answer)
+    
+    # return response
 
-    # async with aopen ("templates/login.html", "rb") as html_file:
+    async with aopen ("templates/login.html", "rb") as html_file:
         
-    #     return HTMLResponse(await html_file.read())
+        return HTMLResponse(await html_file.read())
     
 @router.post("/login")
 async def login(username:str  = Form(...), password:str = Form(...), vcode: int = Form(...)):
 
     user = await method.sql_where_by_NAME(User_Profile, name=username)
     
-    if await valid_code.auth(session=gen_session_id(), request=vcode):
+    # if valid_code.auth(session=gen_session_id(), request=vcode):
+    if answer != vcode:
         return {"Message": "Valid Code error"}
 
     elif user is None:

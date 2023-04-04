@@ -19,9 +19,10 @@ br{
   height: 35px;
 }
 
-/* .error-message{
-  color: transparent;
-} */
+.valid-code{
+  width: 100px;
+  height: auto;
+}
 
 .form {
   width: 350px;
